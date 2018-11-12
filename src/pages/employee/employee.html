@@ -1,0 +1,52 @@
+<!--
+  Generated template for the EmployeePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Employee</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <h1>Hello Carver</h1>
+      <div id="regularTime" [hidden]="enableBreak" 
+      style="text-align:center; width:100%; margin-top:30px;">
+          <app-clock1 id="clock" #clock [hours]="clockObject.hour" [minutes]="clockObject.minute" [seconds]="clockObject.second"></app-clock1>
+      </div>
+      <div id="breakTimer" [hidden]="!enableBreak">
+        <app-timer id="timer" #timer [total_seconds]="0" [timeObject]="timeObject"></app-timer> 
+        <app-button1 [label]="'End Timer'" 
+                    [width]="'100%'" 
+                    [height]="'30px'" 
+                    [borderRadius]="'10px'"
+                    [fontSize]="'15px'"
+                    [backgroundColor]="'#d0d8d8'"
+                    (eventPressed)="PromptEndBreak($event)">
+        </app-button1>
+      </div>
+      <ion-row [hidden]="enableBreak" style="margin-top:30px;">
+        <ion-col *ngFor="let button of buttonLists" col-4>
+          <app-button1 [label]="button.label" 
+                  [width]="button.width" 
+                  [height]="button.height" 
+                  [borderRadius]="button.borderRadius"
+                  [fontSize]="button.fontSize"
+                  [backgroundColor]="button.backgroundColor"
+                  [valueParamEvent]="button.valueParamEvent"
+                  [color]="button.color"                  
+                  (eventPressed)="PromptTakeBreak($event)"
+                  [disabled]="false">
+          </app-button1>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col>
+           <app-table1 [items]="[{t1:'MORNING', t2:'9:00:00 AM-10:00:00 AM'}, {t1:'LUNCH', t2:'12:00:00 PM-1:00:00 PM'}]"></app-table1> 
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+</ion-content>
